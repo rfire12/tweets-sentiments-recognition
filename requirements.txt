@@ -1,0 +1,6 @@
+flask
+pandas
+nltk
+numpy
+sklearn
+python-dotenv
