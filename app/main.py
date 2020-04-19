@@ -13,7 +13,9 @@ app.config["OAUTH_TOKEN_SECRET"] = os.environ.get("OAUTH_TOKEN_SECRET")
 @app.route("/")
 def index():
     classifier, vectorizer = train_naive_bayes_model()
-    predict_sentiment(classifier, vectorizer)
+    tweets = ["bye bye corona sincerely pm", "corona song woliagba crew "]
+    tweets_predicted = predict_sentiment(tweets, classifier, vectorizer)
+    print(tweets_predicted)
     return "This is the homepage"
 
 

@@ -18,7 +18,7 @@ def train_naive_bayes_model():
     tweets = vectorizer.fit_transform(df.text.values.astype('U'))
     sentiments = df.sentiment_label
 
-    tweets_train, tweets_test, sentiment_train, sentiment_test = train_test_split(tweets, sentiments, test_size=0.25, train_size=0.75, random_state=100) 
+    tweets_train, tweets_test, sentiment_train, sentiment_test = train_test_split(tweets, sentiments, train_size=0.99, random_state=100) 
 
     classifier = naive_bayes.MultinomialNB()
     classifier.fit(tweets_train, sentiment_train)
@@ -28,12 +28,18 @@ def train_naive_bayes_model():
     print(accuracy_score(sentiment_test, sentiment_predicted))
     return classifier, vectorizer
 
-def predict_sentiment(classifier, vectorizer):
-    tweet = np.array(["corona song woliagba crew "])
-    vector = vectorizer.transform(tweet)
+def format_data(tweets, predicted_sentiments):
+    data = []
+    for tweet, sentiment in zip(tweets, predicted_sentiments):
+        data.append({"tweet": tweet, "sentiment": sentiment})
+    return data
 
-    print(classifier.predict(vector))
-
+def predict_sentiment(tweets, classifier, vectorizer):
+    tweets_array = np.array(tweets)
+    vector = vectorizer.transform(tweets_array)
+    predicted_sentiment = classifier.predict(vector)
+    return format_data(tweets, predicted_sentiment)
+    
 
 
 
