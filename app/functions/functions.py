@@ -5,26 +5,26 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string
 
-def deEmojify(inputString):
-    return inputString.encode('ascii', 'ignore').decode('ascii')
+def deEmojify(text):
+    return text.encode('ascii', 'ignore').decode('ascii')
 
-def pre_process_string(inputString):
-    inputString = deEmojify(inputString)
+def pre_process_string(text):
+    text = deEmojify(text)
 
-    inputString = re.sub(r'http\S+','', inputString, flags=re.MULTILINE)
-    inputString = re.sub(
-        r'https?:\/\/(www\.)?[-a-zA-Z0–9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0–9@:%_\+.~#?&//=]*)', '', inputString, flags=re.MULTILINE)
-    inputString = re.sub(
-        r'[-a-zA-Z0–9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0–9@:%_\+.~#?&//=]*)', '', inputString, flags=re.MULTILINE)
-    inputString = re.sub(r"#(\w+)", '', inputString, flags=re.MULTILINE)
-    inputString = re.sub(r"@(\w+)", '', inputString, flags=re.MULTILINE)
-    inputString = re.sub(r"[0-9]", '', inputString, flags=re.MULTILINE)
+    text = re.sub(r'http\S+','', text, flags=re.MULTILINE)
+    text = re.sub(
+        r'https?:\/\/(www\.)?[-a-zA-Z0–9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0–9@:%_\+.~#?&//=]*)', '', text, flags=re.MULTILINE)
+    text = re.sub(
+        r'[-a-zA-Z0–9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0–9@:%_\+.~#?&//=]*)', '', text, flags=re.MULTILINE)
+    text = re.sub(r"#(\w+)", '', text, flags=re.MULTILINE)
+    text = re.sub(r"@(\w+)", '', text, flags=re.MULTILINE)
+    text = re.sub(r"[0-9]", '', text, flags=re.MULTILINE)
 
-    inputString = inputString.lower()
+    text = text.lower()
 
     stop_words = set(stopwords.words('english'))
 
-    word_tokens = word_tokenize(inputString)
+    word_tokens = word_tokenize(text)
 
     filtered_sentence = [w for w in word_tokens if not w in stop_words]
     filtered_sentence = []
@@ -33,11 +33,11 @@ def pre_process_string(inputString):
         if w not in stop_words:
             filtered_sentence.append(w)
 
-    inputString = ' '.join(filtered_sentence)
+    text = ' '.join(filtered_sentence)
 
-    inputString = ' '.join(re.split(r'\W+', inputString))
+    text = ' '.join(re.split(r'\W+', text))
 
-    return inputString
+    return text
 
 
 def process_tweets(tweets):

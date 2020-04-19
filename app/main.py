@@ -15,9 +15,6 @@ app.config["credentials"] = {
 
 @app.route("/", methods=['GET'])
 def index():
-    tweets = ["bye bye corona sincerely pm", "corona song woliagba crew "]
-    tweets_predicted = predict_sentiment(tweets, classifier, vectorizer)
-    print(tweets_predicted)
     return "This is the homepage"
 
 @app.route("/tweets", methods=['GET'])
