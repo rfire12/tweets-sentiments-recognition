@@ -3,4 +3,5 @@ pandas
 nltk
 numpy
 sklearn
+tweepy
 python-dotenv

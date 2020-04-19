@@ -34,8 +34,8 @@ def format_data(tweets, predicted_sentiments):
         data.append({"tweet": tweet, "sentiment": sentiment})
     return data
 
-def predict_sentiment(tweets, classifier, vectorizer):
-    tweets_array = np.array(tweets)
+def predict_sentiment(pre_processed_tweets, tweets, classifier, vectorizer):
+    tweets_array = np.array(pre_processed_tweets)
     vector = vectorizer.transform(tweets_array)
     predicted_sentiment = classifier.predict(vector)
     return format_data(tweets, predicted_sentiment)
