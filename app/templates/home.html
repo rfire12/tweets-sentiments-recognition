@@ -11,6 +11,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </form>
+            {% if(amount > 0) %}
             <hr />
             <h5 class="Tweets">Tweets</h5>
             <div class="table-responsive">
@@ -22,17 +23,15 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for tweet in tweets %}
                         <tr>
-                            <td>Esto es una prueba</td>
-                            <td>Neutral</td>
+                            <td>{{ tweet.tweet }}</td>
+                            <td>{{ tweet.sentiment }}</td>
                         </tr>
-                        <tr>
-                            <td>Esto tambi&eacute;n es una prueba</td>
-                            <td>Neutral</td>
-                        </tr>
-                    </tbody>
+                        {% endfor %}
                 </table>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

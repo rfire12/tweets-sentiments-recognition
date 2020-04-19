@@ -17,7 +17,9 @@ app.config["credentials"] = {
 def index():
     classifier, vectorizer = train_naive_bayes_model()
     predict_sentiment(classifier, vectorizer)
-    return render_template('home.html')
+    tweets = [{'tweet': 'TEST', 'sentiment': 'positive'}]
+    amount = len(tweets)
+    return render_template('home.html', tweets = tweets, amount = amount)
 
 @app.route("/tweets", methods=['GET'])
 def tweets():
