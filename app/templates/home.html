@@ -1,5 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
-<h1>HELLO WORLD!!</h1>
+<div class="container">
+    <div class="card mt-3 shadow">
+        <div class="card-body">
+            <h5 class="card-title">B&uacute;squeda</h5>
+            <form class="form-inline">
+                <div class="form-group mr-2">
+                    <input type="text" class="form-control" id="search-input" name="hashtag" placeholder="Hashtag" />
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+            <hr />
+            <h5 class="Tweets">Tweets</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tweet</th>
+                            <th>Sentimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Esto es una prueba</td>
+                            <td>Neutral</td>
+                        </tr>
+                        <tr>
+                            <td>Esto tambi&eacute;n es una prueba</td>
+                            <td>Neutral</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

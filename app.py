@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from model.model import train_naive_bayes_model, predict_sentiment
 from functions.functions import get_tweets_from_hashtag
 import os
@@ -15,7 +15,9 @@ app.config["credentials"] = {
 
 @app.route("/", methods=['GET'])
 def index():
-    return "This is the homepage"
+    classifier, vectorizer = train_naive_bayes_model()
+    predict_sentiment(classifier, vectorizer)
+    return render_template('home.html')
 
 @app.route("/tweets", methods=['GET'])
 def tweets():
