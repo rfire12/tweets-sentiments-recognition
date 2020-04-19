@@ -5,3 +5,4 @@ numpy
 sklearn
 tweepy
 python-dotenv
+gunicorn
