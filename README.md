@@ -20,7 +20,7 @@ You should activate your virtual-env each time you restart your terminal
 $ pip3 install -r requirements.txt
 ```
 
-#### 3. Create a .env file containing your Twitter's API Credentials. e.g:
+#### 3. Create a .env file containing your Twitter API Credentials. e.g:
 ```
 CONSUMER_KEY = "YOUR CONSUMER KEY"
 CONSUMER_SECRET = "YOUR CONSUMER SECRET KEY"
