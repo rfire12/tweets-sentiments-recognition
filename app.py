@@ -15,19 +15,19 @@ app.config["credentials"] = {
 
 @app.route("/", methods=['GET'])
 def index():
-    classifier, vectorizer = train_naive_bayes_model()
-    predict_sentiment(classifier, vectorizer)
-    tweets = [{'tweet': 'TEST', 'sentiment': 'positive'}]
-    amount = len(tweets)
-    return render_template('home.html', tweets = tweets, amount = amount)
+    return render_template('home.html', tweets=[], amount=0)
 
-@app.route("/tweets", methods=['GET'])
-def tweets():
-    tweets, pre_processed_tweets = get_tweets_from_hashtag("#hey", app.config["credentials"] )
+
+@app.route("/search", methods=['POST'])
+def search():
+    hashtag = request.form.get('hashtag')
+    tweets, pre_processed_tweets = get_tweets_from_hashtag(
+        hashtag, app.config["credentials"])
     classifier, vectorizer = train_naive_bayes_model()
-    tweets_predicted = predict_sentiment(pre_processed_tweets, tweets, classifier, vectorizer) 
-    print(tweets_predicted)
-    return "none"
+    tweets_predicted = predict_sentiment(
+        pre_processed_tweets, tweets, classifier, vectorizer)
+    return render_template('home.html', tweets = tweets_predicted, amount = len(tweets_predicted))
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
