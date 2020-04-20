@@ -1,2 +1,1 @@
-FLASK_APP=./app/main.py
-PYTHONPATH=./
+FLASK_APP=./app.py
