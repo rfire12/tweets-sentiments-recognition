@@ -55,7 +55,12 @@ def get_tweets_from_hashtag(hashtag, credentials):
     api = tweepy.API(auth)
     tweets = []
 
-    for tweet in tweepy.Cursor(api.search, q=hashtag, lang="en").items(50):
-        tweets.append(tweet.text)
+    for tweet in tweepy.Cursor(api.search, q=hashtag, lang="en", tweet_mode='extended').items(50):
+        tweet_text = ""
+        try:
+            tweet_text = tweet.retweeted_status.full_text if hasattr(tweet, 'retweeted_status') else tweet.full_text
+        except:
+            tweet_text = tweet.full_text
+        tweets.append(tweet_text)
 
     return tweets, process_tweets(tweets)
