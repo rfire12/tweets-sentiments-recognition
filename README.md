@@ -1,7 +1,7 @@
 # tweets-sentiments-recognition
 
 This app detects tweets's sentiments using a Naive Bayes model. 
-Tweets are fetch from the twitter's API using an specified hashtag to collect them.
+Tweets are fetch from twitter's API using an specified hashtag to collect them.
 
 ## Run this project
 
